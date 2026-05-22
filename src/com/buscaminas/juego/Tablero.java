@@ -111,7 +111,16 @@ public class Tablero {
             return false;
         }
 
-        celda.descubrir();
+        if(!celda.tieneMina() && celda.getMinasCercanas()==0){
+
+            abrirCeros(fila,columna);
+
+        }else{
+
+            celda.descubrir();
+
+
+        }
 
         return celda.tieneMina();
     }
@@ -143,5 +152,34 @@ public class Tablero {
             }
         }
     }
+
+    public void abrirCeros(int fila,int columna){
+        if(!posicionValida(fila,columna)){
+            return;
+        }
+
+        Celda celda = tablero[fila][columna];
+
+        if (celda.estaDescubierta()){
+            return;
+        }
+
+        celda.descubrir();
+
+        if (celda.getMinasCercanas()!= 0){
+            return;
+        }
+
+        for (int i = fila - 1; i <= fila + 1 ; i++) {
+            for (int j = columna - 1 ; j <= columna + 1; j++) {
+                if(!(i == fila && j == columna)){
+                    abrirCeros(i,j);
+                }
+            }
+
+        }
+
+    }
+
 
 }
