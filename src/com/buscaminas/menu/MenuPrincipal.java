@@ -52,8 +52,8 @@ public class MenuPrincipal {
 
     private void menuNuevaPartida() {
         String mensajeNuevaPartida = "\n--- NUEVA PARTIDA ---" +
-                "\n1. Persona vs Persona" +
-                "\n2. Persona vs CPU" +
+                "\n1. 1 Jugador" +
+                "\n2. Multijugador" +
                 "\n3. Volver" +
                 "\nSelecione una opción";
         int opcion;
@@ -69,7 +69,7 @@ public class MenuPrincipal {
                     break;
 
                 case 2:
-
+                    menuMultijugador();
                     break;
 
                 case 3:
@@ -81,7 +81,38 @@ public class MenuPrincipal {
 
         }while (opcion != 3);
 
+    }
 
+    private void menuMultijugador() {
+        String mensajeNuevaPartida = "\n--- Multijugador ---" +
+                "\n1. Jugador vs Jugador" +
+                "\n2.  Jugador vs CPU" +
+                "\n3. Volver" +
+                "\nSelecione una opción";
+        int opcion;
+
+        do {
+            System.out.println(mensajeNuevaPartida);
+
+            opcion = teclado.nextInt();
+
+            switch (opcion){
+                case 1:
+                    System.out.println("Opcion Jugador vs Jugador");
+                    break;
+
+                case 2:
+                    System.out.println("Opcion Jugador vs PC");
+                    break;
+
+                case 3:
+                    return;
+
+                default:
+                    System.out.println("Opción inválida");
+            };
+
+        }while (opcion != 3);
 
     }
 }
