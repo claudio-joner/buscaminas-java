@@ -20,7 +20,7 @@ public class GestorPartidas {
             ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("partida.dat"));
             salida.writeObject(tablero);
             salida.close();
-            System.out.println("Partida guardada");
+            System.out.println("Partida GUARDADA....");
         } catch (Exception e) {
             System.out.println("Error al guardar");
         }
@@ -36,7 +36,7 @@ public class GestorPartidas {
             ObjectInputStream partidaGuardada = new ObjectInputStream(new FileInputStream("partida.dat"));
             Tablero tableroGuardado = (Tablero) partidaGuardada.readObject();
             partidaGuardada.close();
-            System.out.println("Partida recuperada...");
+            System.out.println("Partida RECUPERADA...");
             return tableroGuardado;
 
         } catch (Exception e) {
