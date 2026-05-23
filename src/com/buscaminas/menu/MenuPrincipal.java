@@ -1,6 +1,8 @@
 package com.buscaminas.menu;
 
 import com.buscaminas.juego.Juego;
+import com.buscaminas.juego.Tablero;
+import com.buscaminas.persistencia.GestorPartidas;
 
 import java.util.Scanner;
 
@@ -27,7 +29,8 @@ public class MenuPrincipal {
                     menuNuevaPartida();
                     break;
                 case 2:
-                    System.out.println("Recuperando partida....");
+                    GestorPartidas gestorPartidas = new GestorPartidas();
+                    menuPartidaGuardada(gestorPartidas.recuperar());
                     break;
                 case 3:
                     System.out.println("Adios...");
@@ -37,6 +40,14 @@ public class MenuPrincipal {
             }
         }while (opcion != 3);
 
+    }
+
+    private void menuPartidaGuardada(Tablero tablero) {
+        if(tablero != null){
+            new Juego(tablero);
+        }else{
+            System.out.println("No se pudo recuperar la partida.");
+        }
     }
 
     private void menuNuevaPartida() {
@@ -58,7 +69,7 @@ public class MenuPrincipal {
                     break;
 
                 case 2:
-                    System.out.println("Recuperando...");
+
                     break;
 
                 case 3:

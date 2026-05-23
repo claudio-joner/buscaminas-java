@@ -26,16 +26,22 @@ public class GestorPartidas {
         }
     }
 
+    /**
+     * Recupera una partida guardada desde el archivo partida.dat.
+     *
+     * @return tablero recuperado o null si ocurre un error.
+     */
     public Tablero recuperar(){
-        try{
-            ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("partida.dat"));
-            Tablero tablero = (Tablero) entrada.readObject();
-            entrada.close();
-            System.out.println("Partida recuperada.");
-            return  tablero;
-        } catch (Exception e) {
-            System.out.println("Error al recuperar partida.");
+        try {
+            ObjectInputStream partidaGuardada = new ObjectInputStream(new FileInputStream("partida.dat"));
+            Tablero tableroGuardado = (Tablero) partidaGuardada.readObject();
+            partidaGuardada.close();
+            System.out.println("Partida recuperada...");
+            return tableroGuardado;
 
+        } catch (Exception e) {
+            System.out.println("Error al recuperar partida."+
+                    "\nError: " + e.toString());
             return null;
         }
     }
