@@ -1,6 +1,9 @@
 package com.buscaminas.juego;
 
-public class Celda {
+import java.io.Serializable;
+
+public class Celda implements Serializable {
+    //Atributos de la clase
     private boolean mina;
     private boolean encontrada;
     private int minasCercanas;

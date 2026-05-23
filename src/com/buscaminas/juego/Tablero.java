@@ -1,9 +1,10 @@
 package com.buscaminas.juego;
 
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Tablero {
+public class Tablero implements Serializable {
     private Celda[][] tablero;
     private final int CANT_MINAS = 10;
 
