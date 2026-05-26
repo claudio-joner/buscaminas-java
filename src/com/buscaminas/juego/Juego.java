@@ -77,7 +77,6 @@ public class Juego implements Serializable {
                 case 2:
                     GestorPartidas gestor = new GestorPartidas();
                     gestor.guardar(getTablero());
-                    System.out.println("Partida guardada...");
                     break;
 
                 case 3:
