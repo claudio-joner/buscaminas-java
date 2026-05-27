@@ -2,8 +2,12 @@ package com.buscaminas.menu;
 
 import com.buscaminas.juego.Juego;
 import com.buscaminas.juego.Tablero;
+import com.buscaminas.jugadores.Jugador;
+import com.buscaminas.jugadores.JugadorHumano;
 import com.buscaminas.persistencia.GestorPartidas;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuPrincipal {
@@ -30,7 +34,7 @@ public class MenuPrincipal {
                     break;
                 case 2:
                     GestorPartidas gestorPartidas = new GestorPartidas();
-                    menuPartidaGuardada(gestorPartidas.recuperar());
+                    //menuPartidaGuardada(gestorPartidas.recuperar());
                     break;
                 case 3:
                     System.out.println("Adios...");
@@ -42,9 +46,9 @@ public class MenuPrincipal {
 
     }
 
-    private void menuPartidaGuardada(Tablero tablero) {
+    private void menuPartidaGuardada(Tablero tablero, List<Jugador> jugadores) {
         if(tablero != null){
-            new Juego(tablero);
+            new Juego(tablero,jugadores);
         }else{
             System.out.println("No se pudo recuperar la partida.");
         }
@@ -65,9 +69,10 @@ public class MenuPrincipal {
 
             switch (opcion){
                 case 1:
-                    Juego juego = new Juego();
+                    List<Jugador> jugadores = new ArrayList<>();
+                    jugadores.add(new JugadorHumano("Jugador 1"));
+                    new Juego(jugadores);
                     break;
-
                 case 2:
                     menuMultijugador();
                     break;
