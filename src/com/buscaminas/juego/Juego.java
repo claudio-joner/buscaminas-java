@@ -14,13 +14,9 @@ public class Juego implements Serializable {
     private Scanner teclado = new Scanner(System.in);
     private List<Jugador> jugadores;
     private int indiceTurnoActual;
-    private Jugador jugadorActual;
 
 
-
-    public void setJugadorActual(Jugador jugadorActual) {
-        this.jugadorActual = jugadorActual;
-    }
+    //SETTERS and GETTERS
 
     public void setTablero(Tablero tablero) {
         this.tablero = tablero;
@@ -62,10 +58,9 @@ public class Juego implements Serializable {
         return jugando;
     }
 
-    public Jugador getJugadorActual() {
-        return jugadorActual;
-    }
 
+
+    //CONSTRUCTORES
 
     public Juego(List<Jugador> jugadores){
         setTablero(new Tablero());
@@ -132,6 +127,8 @@ public class Juego implements Serializable {
 
         Jugador jugador = jugadorActual();
 
+        System.out.println("\n Turno del:" + jugador.getNombre());
+
         int [] posicion = jugador.elegirCelda();
         int fila = posicion[0];
         int columna = posicion[1];
@@ -165,12 +162,13 @@ public class Juego implements Serializable {
             setJugando(false);
         }
 
-        cambiarTurno();
+        if(getJugando()){
+            cambiarTurno();
+        }
     }
 
     private Jugador jugadorActual(){
-        setJugadorActual(getJugadores().get(getIndiceTurnoActual()));
-        return getJugadorActual();
+        return getJugadores().get(getIndiceTurnoActual());
     }
 
     private void cambiarTurno(){

@@ -69,9 +69,7 @@ public class MenuPrincipal {
 
             switch (opcion){
                 case 1:
-                    List<Jugador> jugadores = new ArrayList<>();
-                    jugadores.add(new JugadorHumano("Jugador 1"));
-                    new Juego(jugadores);
+                    iniciarSinglePlayer();
                     break;
                 case 2:
                     menuMultijugador();
@@ -103,9 +101,7 @@ public class MenuPrincipal {
 
             switch (opcion){
                 case 1:
-                    System.out.println("Opcion Jugador vs Jugador");
-                    break;
-
+                    iniciarPersonaVsPersona();
                 case 2:
                     System.out.println("Opcion Jugador vs PC");
                     break;
@@ -119,5 +115,18 @@ public class MenuPrincipal {
 
         }while (opcion != 3);
 
+    }
+
+    private void iniciarSinglePlayer() {
+        List<Jugador> jugadores = new ArrayList<>();
+        jugadores.add(new JugadorHumano("Jugador 1"));
+        new Juego(jugadores);
+    }
+
+    private void iniciarPersonaVsPersona() {
+        List<Jugador> jugadores = new ArrayList<>();
+        jugadores.add(new JugadorHumano("Jugador 1"));
+        jugadores.add(new JugadorHumano("Jugador 2"));
+        new Juego(jugadores);
     }
 }
