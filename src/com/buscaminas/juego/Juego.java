@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Juego implements Serializable {
     private Tablero tablero;
     private boolean jugando ;
-    private Scanner teclado = new Scanner(System.in);
+    private transient Scanner teclado;
     private List<Jugador> jugadores;
     private int indiceTurnoActual;
 
@@ -67,7 +67,6 @@ public class Juego implements Serializable {
         setJugando(true);
         setJugadores(jugadores);
         setIndiceTurnoActual(0);
-        iniciarTablero();
     }
 
     public Juego(Tablero tablero,List<Jugador> jugadores){
@@ -75,10 +74,18 @@ public class Juego implements Serializable {
         setJugando(true);
         setJugadores(jugadores);
         setIndiceTurnoActual(0);
-        iniciarTablero();
     }
 
-    private void iniciarTablero() {
+    private Scanner teclado() {
+        if (teclado == null) {
+            teclado = new Scanner(System.in);
+        }
+        return teclado;
+    }
+
+    /** Ejecuta el bucle de la partida (nueva o recuperada). */
+    public void iniciar() {
+        setJugando(true);
 
         String menu = """
 
@@ -97,7 +104,7 @@ public class Juego implements Serializable {
 
             System.out.print(menu);
 
-            int opcion = teclado.nextInt();
+            int opcion = teclado().nextInt();
 
             switch(opcion){
 
@@ -107,7 +114,7 @@ public class Juego implements Serializable {
 
                 case 2:
                     GestorPartidas gestor = new GestorPartidas();
-                    gestor.guardar(getTablero());
+                    gestor.guardar(this);
                     break;
 
                 case 3:
@@ -127,7 +134,6 @@ public class Juego implements Serializable {
 
         Jugador jugador = jugadorActual();
 
-        System.out.println("\n Turno del:" + jugador.getNombre());
 
         int [] posicion = jugador.elegirCelda();
         int fila = posicion[0];
@@ -136,10 +142,10 @@ public class Juego implements Serializable {
 
         //Se rememplaza por la linea anterior.
         /*System.out.print("Fila: ");
-        int fila = teclado.nextInt();
+        int fila = teclado().nextInt();
 
         System.out.print("Columna: ");
-        int columna = teclado.nextInt();*/
+        int columna = teclado().nextInt();*/
 
         if (!tablero.posicionValida(fila,columna)){
             System.out.println("Fila o columna invalida, use valores de 0 a 7.");
