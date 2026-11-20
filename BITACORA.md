@@ -28,6 +28,7 @@ Rama `feature/jugadores`:
 - `9955643` Agregar archivo TAREAS.md con listado de tareas
 - `3a49315` Agregar README y marcar T-002 como hecha
 - `675a373` Agregar tareas T-003 a T-012 surgidas de la revisión de la PR
+- `a27dc77` Agregar bitácora del proyecto
 
 Los commits van sin atribución de Claude Code (pedido del usuario).
 
@@ -38,15 +39,25 @@ Los commits van sin atribución de Claude Code (pedido del usuario).
 ### 6. Pull request
 - Se redactó la descripción de la PR de `feature/jugadores`.
 - Push de la rama a `origin` (`6cb7ea5..3a49315`).
-- PR #8 "Feature/jugadores": ya está cerrada y mergeada (2026-11-20), sin comentarios. `gh` no está instalado; se consultó por la API pública de GitHub.
+- PR #8 "Feature/jugadores": ya está cerrada y mergeada (2026-11-20), sin comentarios. Se mergeó solo hasta `6cb7ea5`: los commits de documentación (`TAREAS.md`, `README.md`) quedaron fuera y `main` no los tenía. `gh` no está instalado; se consultó por la API pública de GitHub.
 - Se escribieron comentarios de revisión del código y se convirtieron en tareas T-003 a T-012.
 
+### 7. Rama de documentación
+- Al intentar llevar los commits a una rama nueva desde `main`, el cherry-pick de solo dos commits dio conflicto: `main` no tenía `TAREAS.md`. Se abortó y se rehizo con los cuatro commits de documentación.
+- Rama `docs/tareas-bitacora` creada desde `origin/main` y subida al remoto, con hashes nuevos:
+  - `62f0252` Agregar archivo TAREAS.md con listado de tareas
+  - `46572cc` Agregar README y marcar T-002 como hecha
+  - `f27e7d6` Agregar tareas T-003 a T-012 surgidas de la revisión de la PR
+  - `4c89280` Agregar bitácora del proyecto
+- Los hashes de la sección 4 corresponden a `feature/jugadores`; los de esta sección son los que quedan en la rama nueva.
+
 ## Estado actual
-- Rama actual: `feature/jugadores`, que ya está mergeada en `main`.
-- El commit `675a373` no está en `main` ni subido al remoto.
+- Rama actual: `docs/tareas-bitacora` (sobre `main`, subida al remoto).
+- `main` tiene el código de la PR #8, pero aún no tiene `README.md`, `TAREAS.md` ni `BITACORA.md`; llegarán con la PR de esta rama.
+- La rama `feature/jugadores` conserva los commits originales de documentación.
 - Tareas pendientes: T-003 a T-012 (ver `TAREAS.md`).
 
 ## Próximos pasos sugeridos
-- Crear una rama nueva desde `main` para llevar `TAREAS.md` y esta bitácora.
+- Abrir la PR de `docs/tareas-bitacora` contra `main`.
 - Probar el ciclo guardar y recuperar en ejecución.
 - Empezar por T-003 y T-005.
