@@ -51,13 +51,25 @@ Los commits van sin atribución de Claude Code (pedido del usuario).
   - `4c89280` Agregar bitácora del proyecto
 - Los hashes de la sección 4 corresponden a `feature/jugadores`; los de esta sección son los que quedan en la rama nueva.
 
+### 8. PR de documentación y tareas de tests
+- Se redactó la descripción de la PR de `docs/tareas-bitacora` y se abrió contra `main` (PR #9, mergeada). `gh` no está instalado, así que la PR se creó desde el navegador.
+- Después se mergeó también la PR #10 de `feature/jugadores`. `main` quedó en `b4e5543` con `README.md`, `TAREAS.md` y `BITACORA.md`.
+- Se agregaron a `TAREAS.md` las tareas de tests T-013 a T-023: JUnit 5, `Celda`, `Tablero` (construcción, `posicionValida`, `descubrirCelda`, `abrirCeros`, `ganoJugador` y `revelarMinas`), `Jugador` y `JugadorHumano`, `Juego`, `GestorPartidas` y `MenuPrincipal`. Solo se agregaron como tareas; no se escribió ningún test.
+
+### 9. Revisión de ramas
+Tras `git fetch --prune`, todas las ramas locales y remotas están completamente incluidas en `main` (no tienen commits propios sin mergear):
+- `dev`, `feature/recuperar-partida`, `feature/reorganizar-menu-juego`: antiguas, ya mergeadas.
+- `docs/tareas-bitacora`: mergeada con la PR #9.
+- `feature/jugadores`: mergeada; la local está 11 commits por detrás de la remota.
+- `master`: rama local sin remoto, apunta al mismo commit que `docs/tareas-bitacora` (`4078813`).
+- Decisiones del usuario: se borraron, locales y remotas, `feature/recuperar-partida`, `feature/reorganizar-menu-juego`, `docs/tareas-bitacora` y `feature/jugadores` (`git branch -d` confirmó que estaban mergeadas). Se conservaron `dev` y `master`.
+
 ## Estado actual
-- Rama actual: `docs/tareas-bitacora` (sobre `main`, subida al remoto).
-- `main` tiene el código de la PR #8, pero aún no tiene `README.md`, `TAREAS.md` ni `BITACORA.md`; llegarán con la PR de esta rama.
-- La rama `feature/jugadores` conserva los commits originales de documentación.
-- Tareas pendientes: T-003 a T-012 (ver `TAREAS.md`).
+- Rama actual: `main`, al día con `origin/main`.
+- Cambios sin commitear en `main`: `TAREAS.md` (T-013 a T-023) y `BITACORA.md` (esta sección). Se dejan así a pedido del usuario, para decidir cómo subirlos.
+- Tareas pendientes: T-003 a T-023 (ver `TAREAS.md`).
 
 ## Próximos pasos sugeridos
-- Abrir la PR de `docs/tareas-bitacora` contra `main`.
-- Probar el ciclo guardar y recuperar en ejecución.
+- Subir los cambios de documentación a `main` (rama nueva y PR, o commit directo).
+- Configurar JUnit (T-013) y probar el ciclo guardar y recuperar en ejecución.
 - Empezar por T-003 y T-005.
