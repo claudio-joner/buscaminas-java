@@ -7,4 +7,4 @@ Estados: `Pendiente`, `En curso`, `Hecha`
 | Tarea | Estado | Descripción |
 |-------|--------|-------------|
 | T-001 | Hecha | Implementar recuperación de partida guardada |
-| T-002 | Pendiente | Agregar un README con descripción, cómo compilar/ejecutar y reglas del juego |
+| T-002 | Hecha | Agregar un README con descripción, cómo compilar/ejecutar y reglas del juego |
