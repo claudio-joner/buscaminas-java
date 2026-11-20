@@ -64,12 +64,18 @@ Tras `git fetch --prune`, todas las ramas locales y remotas están completamente
 - `master`: rama local sin remoto, apunta al mismo commit que `docs/tareas-bitacora` (`4078813`).
 - Decisiones del usuario: se borraron, locales y remotas, `feature/recuperar-partida`, `feature/reorganizar-menu-juego`, `docs/tareas-bitacora` y `feature/jugadores` (`git branch -d` confirmó que estaban mergeadas). Se conservaron `dev` y `master`.
 
+### 10. T-013: configuración de JUnit 5
+- Rama `feature/junit-setup`, creada desde `main`.
+- Se agregó `pom.xml` (Maven) manteniendo la estructura actual: `sourceDirectory` = `src` y `testSourceDirectory` = `test`, sin mover archivos. Java 21, JUnit Jupiter 5.12.2 y surefire 3.5.2.
+- Nueva carpeta `test/` con estructura espejo de `src` y un test de prueba, `test/com/buscaminas/juego/CeldaTest.java` (se ampliará en T-014).
+- `mvn test` desde la CLI: 1 test, 0 fallos, `BUILD SUCCESS`. Se usó el Maven que descarga IntelliJ en `~/.m2/wrapper`; `mvn` no está en el PATH.
+- `.gitignore`: se agregó `target/`. Un primer intento lo pegó a la línea `.DS_Store` (el archivo no terminaba en salto de línea) y se corrigió.
+- No se verificó la importación del proyecto en IntelliJ.
+
 ## Estado actual
-- Rama actual: `main`, al día con `origin/main`.
-- Cambios sin commitear en `main`: `TAREAS.md` (T-013 a T-023) y `BITACORA.md` (esta sección). Se dejan así a pedido del usuario, para decidir cómo subirlos.
-- Tareas pendientes: T-003 a T-023 (ver `TAREAS.md`).
+- Rama actual: `feature/junit-setup`, sin commitear ni subir.
+- Tareas hechas: T-001, T-002, T-013. Pendientes: T-003 a T-012 y T-014 a T-023.
 
 ## Próximos pasos sugeridos
-- Subir los cambios de documentación a `main` (rama nueva y PR, o commit directo).
-- Configurar JUnit (T-013) y probar el ciclo guardar y recuperar en ejecución.
-- Empezar por T-003 y T-005.
+- Probar el ciclo guardar y recuperar en ejecución.
+- Seguir con los tests (T-014 en adelante) y con T-003 y T-005.

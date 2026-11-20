@@ -18,7 +18,7 @@ Estados: `Pendiente`, `En curso`, `Hecha`
 | T-010 | Pendiente | Eliminar imports sin usar en `Tablero` y el campo `encontrada` en `Celda` |
 | T-011 | Pendiente | Generar las minas después del primer clic para que la primera jugada nunca sea una mina |
 | T-012 | Pendiente | Implementar el modo Jugador vs CPU |
-| T-013 | Pendiente | Configurar JUnit 5 en el proyecto y crear la carpeta `test` con la estructura de paquetes espejo de `src` |
+| T-013 | Hecha | Configurar JUnit 5 en el proyecto y crear la carpeta `test` con la estructura de paquetes espejo de `src` |
 | T-014 | Pendiente | Tests de `Celda`: `colocarMina`/`tieneMina`, `descubrir`/`estaDescubierta`, `setMinasCercanas`/`getMinasCercanas` y valores iniciales |
 | T-015 | Pendiente | Tests de `Tablero` (construcción): tamaño 8x8, exactamente 10 minas y `minasCercanas` coherente con las minas vecinas (esquinas y bordes incluidos) |
 | T-016 | Pendiente | Tests de `Tablero.posicionValida`: límites 0 y 7, valores negativos y fuera de rango |
