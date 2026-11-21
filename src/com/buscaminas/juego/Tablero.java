@@ -1,25 +1,25 @@
 package com.buscaminas.juego;
 
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.Random;
 
 public class Tablero implements Serializable {
     private Celda[][] tablero;
+    public static final int FILAS = 8;
+    public static final int COLUMNAS = 8;
     private final int CANT_MINAS = 10;
 
     public Tablero(){
-        tablero = new Celda[8][8];
+        tablero = new Celda[FILAS][COLUMNAS];
         inicializar();
         colocarMina();
         calcularMinasCercanas();
     }
 
     private void calcularMinasCercanas() {
-        for (int fila = 0; fila < 8; fila++) {
-            for (int columna = 0; columna < 8; columna++) {
+        for (int fila = 0; fila < FILAS; fila++) {
+            for (int columna = 0; columna < COLUMNAS; columna++) {
                 int cantidad = contarMinasAlrededor(fila,columna);
                 tablero[fila][columna].setMinasCercanas(cantidad);
             }
@@ -31,7 +31,7 @@ public class Tablero implements Serializable {
 
         for (int i = fila-1; i <= fila + 1 ; i++) {
             for (int j = columna-1; j <= columna + 1 ; j++) {
-                if(i>= 0 && i < 8 && j >= 0  && j < 8){
+                if(i>= 0 && i < FILAS && j >= 0  && j < COLUMNAS){
                     if (!(i == fila && j == columna)) {
 
                         if(tablero[i][j].tieneMina()){
@@ -49,8 +49,8 @@ public class Tablero implements Serializable {
         int minasColocadas = 0;
 
         while(minasColocadas < CANT_MINAS){
-            int fila = random.nextInt(8);
-            int columna = random.nextInt(8);
+            int fila = random.nextInt(FILAS);
+            int columna = random.nextInt(COLUMNAS);
 
             if(!tablero[fila][columna].tieneMina()){
                 tablero[fila][columna].colocarMina();
@@ -61,8 +61,8 @@ public class Tablero implements Serializable {
     }
 
     private void inicializar() {
-        for (int fila = 0; fila < 8 ; fila++) {
-            for (int columna = 0; columna < 8 ; columna++) {
+        for (int fila = 0; fila < FILAS ; fila++) {
+            for (int columna = 0; columna < COLUMNAS ; columna++) {
                 tablero[fila][columna] = new Celda();
             }
 
@@ -74,11 +74,11 @@ public class Tablero implements Serializable {
         System.out.println("\n     0  1  2  3  4  5  6  7");
         System.out.println("   -------------------------");
 
-        for(int fila = 0; fila < 8; fila++){
+        for(int fila = 0; fila < FILAS; fila++){
 
             System.out.print(fila + " | ");
 
-            for(int columna = 0; columna < 8; columna++){
+            for(int columna = 0; columna < COLUMNAS; columna++){
 
                 Celda celda = tablero[fila][columna];
 
@@ -129,13 +129,13 @@ public class Tablero implements Serializable {
     }
 
     public boolean posicionValida(int fila, int columna){
-        return fila >= 0 && fila < 8 && columna >= 0 && columna < 8;
+        return fila >= 0 && fila < FILAS && columna >= 0 && columna < COLUMNAS;
     }
 
     public boolean ganoJugador(){
         int descubiertas = 0;
-        for (int fila = 0; fila < 8; fila++) {
-            for (int columna = 0; columna < 8; columna++) {
+        for (int fila = 0; fila < FILAS; fila++) {
+            for (int columna = 0; columna < COLUMNAS; columna++) {
                 Celda celda = tablero[fila][columna];
                         if(celda.estaDescubierta() && !celda.tieneMina()){
                             descubiertas++;
@@ -143,12 +143,12 @@ public class Tablero implements Serializable {
             }
 
         }
-        return descubiertas ==(64-CANT_MINAS);
+        return descubiertas ==(FILAS * COLUMNAS - CANT_MINAS);
     }
 
     public void revelarMinas(){
-        for (int fila = 0; fila < 8; fila++) {
-            for (int columna = 0; columna < 8; columna++) {
+        for (int fila = 0; fila < FILAS; fila++) {
+            for (int columna = 0; columna < COLUMNAS; columna++) {
                 if(tablero[fila][columna].tieneMina()){
                     tablero[fila][columna].descubrir();
                 }
