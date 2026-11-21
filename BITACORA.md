@@ -72,10 +72,19 @@ Tras `git fetch --prune`, todas las ramas locales y remotas están completamente
 - `.gitignore`: se agregó `target/`. Un primer intento lo pegó a la línea `.DS_Store` (el archivo no terminaba en salto de línea) y se corrigió.
 - No se verificó la importación del proyecto en IntelliJ.
 
+### 11. Tareas T-009, T-010, T-014 a T-016, T-018 a T-020 y T-022
+- T-009: `Tablero` usa las constantes públicas `FILAS` y `COLUMNAS` (8) y `FILAS * COLUMNAS - CANT_MINAS` en lugar del 8 y el 64 fijos. El encabezado de `mostrar()` sigue escrito a mano.
+- T-010: se quitaron los imports sin usar en `Tablero` y el campo `encontrada` en `Celda`. Los `partida.dat` guardados antes de este cambio ya no se pueden recuperar.
+- Tests nuevos en `test/` (sin tocar el código del juego): `CeldaTest` (T-014), `TableroTest` (T-015, T-016, T-018, T-019), `JugadorHumanoTest` (T-020) y `GestorPartidasTest` (T-022).
+- `TableroTestUtil` arma tableros con minas en posiciones conocidas usando reflexión.
+- `GestorPartidasTest` respalda y restaura el `partida.dat` del directorio actual para no pisar una partida real.
+- `mvn test`: 67 tests, 0 fallos, `BUILD SUCCESS`.
+
 ## Estado actual
-- Rama actual: `feature/junit-setup`, sin commitear ni subir.
-- Tareas hechas: T-001, T-002, T-013. Pendientes: T-003 a T-012 y T-014 a T-023.
+- Rama actual: `feature/junit-setup`, con commits locales sin subir.
+- Tareas hechas: T-001, T-002, T-009, T-010, T-013, T-014, T-015, T-016, T-018, T-019, T-020 y T-022.
+- Pendientes: T-003 a T-008, T-011, T-012, T-017, T-021 y T-023.
 
 ## Próximos pasos sugeridos
 - Probar el ciclo guardar y recuperar en ejecución.
-- Seguir con los tests (T-014 en adelante) y con T-003 y T-005.
+- Decidir T-003, T-005 y T-006, de las que dependen T-017, T-021 y T-023.
