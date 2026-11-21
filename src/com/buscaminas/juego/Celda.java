@@ -5,7 +5,6 @@ import java.io.Serializable;
 public class Celda implements Serializable {
     //Atributos de la clase
     private boolean mina;
-    private boolean encontrada;
     private int minasCercanas;
     private boolean descubierta;
 
